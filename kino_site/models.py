@@ -43,9 +43,9 @@ class Movie(models.Model):
     poster = models.ImageField(upload_to='movies_img/', blank=True, null=True)
     year = models.PositiveIntegerField()
     country = models.CharField(max_length=100)
-    director = models.ManyToManyField(Director)
-    actor = models.ManyToManyField(Actor)
-    genre = models.ManyToManyField(Genre)
+    directors = models.ManyToManyField(Director)
+    actors = models.ManyToManyField(Actor)
+    genres = models.ManyToManyField(Genre)
     world_premiere = models.DateField(blank=True, null=True)
     budget = models.DecimalField(max_digits=12, decimal_places=2, blank=True, null=True)
     fees_in_usa = models.DecimalField(max_digits=12, decimal_places=2, blank=True, null=True)
@@ -56,10 +56,10 @@ class Movie(models.Model):
         return self.title
 
 
-class MovieShort(models.Model):
+class MovieShot(models.Model):
     title_short = models.CharField(max_length=100)
     description = models.TextField()
-    image = models.ImageField(upload_to='short_img/', blank=True, null=True)
+    image = models.ImageField(upload_to='shot_img/', blank=True, null=True)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
 
     def __str__(self):
